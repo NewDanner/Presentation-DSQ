@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danner Suxo Quispe</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #2d0047, #1a0030, #0a0010, #000000);
+            min-height: 100vh;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+ 
+        /* ===== TABLERO: colores de casillas ===== */
+        .celda-oscura  { background-color: #1a0030; }
+        .celda-clara   { background-color: #3b0060; }
+        .celda-accent  { background-color: #2d0047; }
+ 
+        /* ===== TABLERO: celda base ===== */
+        .tablero {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        .tablero td {
+            padding: 18px;
+            vertical-align: middle;
+            border: 2px solid #5a0090;
+        }
+ 
+        /* ===== IFRAMES ===== */
+        .tablero iframe {
+            width: 100%;
+            height: 220px;
+            border: none;
+            display: block;
+        }
+ 
+        /* ===== DECORATIVAS (casillas vacías tipo ajedrez) ===== */
+        .deco {
+            background: repeating-linear-gradient(
+                45deg,
+                #2d0047,
+                #2d0047 10px,
+                #1a0030 10px,
+                #1a0030 20px
+            );
+            opacity: 0.7;
+        }
+ 
+        /* ===== ENCABEZADO ===== */
+        h1, h2, h3 { color: #cc88ff; }
+        h4 { color: #dd99ff; }
+        hr { border-color: #5a0090; }
+        a  { color: #bb77ff; }
+ 
+        blockquote {
+            border-left: 4px solid #8844cc;
+            padding-left: 12px;
+            margin-left: 0;
+            color: #ddbbff;
+        }
+
+        /* ===== ÍNDICE STICKY =====
+           position:sticky hace que el elemento se comporte normal
+           en su flujo, pero cuando el scroll lo alcanza, se "pega"
+           al top:0 y acompaña al usuario. En cuanto el usuario sube
+           y el elemento vuelve a su posición original en el DOM,
+           deja de estar pegado automáticamente. No se necesita JS.
+        */
+        #indice-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: linear-gradient(135deg, #1a0030, #2d0047);
+            border-top: 3px solid #8844cc;
+            border-bottom: 3px solid #8844cc;
+            padding: 6px 0 10px 0;
+        }
+        #indice-sticky h2 {
+            margin: 6px 0 6px 0;
+            font-size: 15px;
+        }
+        #indice-sticky .tablero td {
+            padding: 9px 8px;
+            font-size: 12.5px;
+        }
+    </style>
+</head>
+<body>
+ 
+    <!-- ==================== ENCABEZADO ==================== -->
+    <hr>
+    <h1 align="center">Presentación Personal</h1>
+    <h2 align="center">Danner Suxo Quispe (Eizo30)</h2>
+    <p align="center"><i>Estudiante de Ingeniería de Sistemas</i></p>
+    <hr>
+ 
+    <!-- ==================== ÍNDICE STICKY ====================
+         El truco: position:sticky necesita que el elemento padre
+         tenga altura suficiente. Aquí el padre es el <body>, que
+         abarca toda la página, por lo que el índice seguirá al
+         usuario durante todo el scroll y volverá a su lugar al
+         subir hasta el inicio. -->
+    <div id="indice-sticky">
+        <h2 align="center" id="indice">Índice</h2>
+        <table class="tablero" align="center" width="60%">
+            <tr>
+                <td class="celda-oscura" align="center"><a href="#datos-personales">1. Datos Personales</a></td>
+                <td class="deco"></td>
+                <td class="celda-oscura" align="center"><a href="#datos-generales">2. Datos Generales</a></td>
+                <td class="deco"></td>
+                <td class="celda-oscura" align="center"><a href="#pasatiempos">3. Pasatiempos</a></td>
+            </tr>
+            <tr>
+                <td class="deco"></td>
+                <td class="celda-clara" align="center"><a href="#cancion">4. Canción Favorita</a></td>
+                <td class="deco"></td>
+                <td class="celda-clara" align="center"><a href="#juego">5. Videojuego Favorito</a></td>
+                <td class="deco"></td>
+            </tr>
+            <tr>
+                <td class="celda-oscura" align="center"><a href="#mision-vision">6. Misión y Visión</a></td>
+                <td class="deco"></td>
+                <td class="celda-oscura" align="center"><a href="#tareas">7. Tareas</a></td>
+                <td class="deco"></td>
+                <td class="celda-oscura" align="center"><a href="#logros">8. Logros Destacados</a></td>
+            </tr>
+            <tr>
+                <td class="deco"></td>
+                <td colspan="3" class="celda-clara" align="center"><a href="#redes">9. Redes Sociales</a></td>
+                <td class="deco"></td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+ 
+    <!-- ==================== CARRUSEL ==================== -->
+    <div align="center">
+        <table border="2" bordercolor="#8844cc" bgcolor="#1a0030" cellpadding="10" cellspacing="0" width="50%">
+            <tr>
+                <td>
+                    <marquee behavior="scroll" direction="left" scrollamount="12">
+                        <img src="https://i.pinimg.com/736x/5b/ea/41/5bea41f99a7c011c2e059a24fd78525e.jpg" alt="Scorpion" height="280" border="1">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBCjMltwjSWvJh79VsF3TaWSvNMtrfown8Zg&s" alt="Sub-Zero" height="280" border="1">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe1cZcSEsGCpNKjOAJiaSEpHjI_qXpgxcp1g&s" alt="Noob Saibot" height="280" border="1">
+                    </marquee>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+ 
+    <!-- ==================== DATOS PERSONALES ==================== -->
+    <h2 id="datos-personales"><a href="#indice">Datos Personales</a></h2>
+    <table class="tablero">
+        <tr>
+            <td class="celda-oscura" width="25%" align="center" rowspan="2">
+                <img src="img/SS.jpeg" alt="Foto de perfil" width="220" height="220">
+            </td>
+            <td class="deco" width="5%"></td>
+            <td class="celda-clara" width="35%">
+                <p>Nombre: <b>Danner Suxo Quispe</b></p>
+                <p>Fecha de nacimiento: 6 de noviembre de 2004</p>
+                <p>Edad: 21 años</p>
+            </td>
+            <td class="deco" width="5%"></td>
+            <td class="celda-accent" width="30%">
+                <p>País: La Paz, Bolivia</p>
+                <p>Carrera: Ingeniería de Sistemas</p>
+                <p>Universidad: Universidad Salesiana de Bolivia</p>
+                <p>Semestre: 7mo semestre</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-accent"></td>
+            <td class="deco"></td>
+            <td class="celda-oscura"></td>
+            <td class="celda-accent"></td>
+        </tr>
+    </table>
+    <hr>
+ 
+    <!-- ==================== DATOS GENERALES ==================== -->
+    <h2 id="datos-generales"><a href="#indice">Datos Generales</a></h2>
+    <table class="tablero">
+        <tr>
+            <td class="deco" width="12%"></td>
+            <td class="celda-clara" width="38%">
+                <p>Vivo en la calle 21 de Enero, zona Pura Pura.</p>
+                <p>Actualmente estoy cursando el séptimo semestre de Ingeniería de Sistemas.</p>
+            </td>
+            <td class="deco" width="12%"></td>
+            <td class="celda-oscura" width="38%">
+                <p>Tengo 21 años.</p>
+                <p>Soy de La Paz - Bolivia (boliviano).</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-oscura"></td>
+            <td class="deco"></td>
+            <td class="celda-clara"></td>
+            <td class="deco"></td>
+        </tr>
+    </table>
+    <hr>
+ 
+    <!-- ==================== PASATIEMPOS ==================== -->
+    <h2 id="pasatiempos"><a href="#indice">Pasatiempos</a></h2>
+    <table class="tablero">
+        <tr valign="top">
+            <td class="celda-oscura" width="22%">
+                <b>Música</b><br><br>
+                Rock, pop, clásicos: PXNDX, QUEEN, etc.
+            </td>
+            <td class="deco" width="4%"></td>
+            <td class="celda-clara" width="22%">
+                <b>Lectura</b><br><br>
+                "Bajo la misma estrella", "Los deshabitados", "La Odisea", etc.
+            </td>
+            <td class="deco" width="4%"></td>
+            <td class="celda-oscura" width="22%">
+                <b>Videojuegos</b><br><br>
+                Crash Bandicoot, God of War, Shadow of the Colossus, etc.
+            </td>
+            <td class="deco" width="4%"></td>
+            <td class="celda-clara" width="22%">
+                <b>Programar</b><br><br>
+                Java, Python, C++.
+            </td>
+        </tr>
+        <tr>
+            <td class="deco"></td>
+            <td class="celda-accent"></td>
+            <td class="deco"></td>
+            <td class="celda-accent"></td>
+            <td class="deco"></td>
+            <td class="celda-oscura"></td>
+            <td class="deco"></td>
+        </tr>
+    </table>
+    <hr>
+ 
+    <!-- ==================== CANCIÓN FAVORITA ==================== -->
+    <h2 id="cancion"><a href="#indice">Canción Favorita</a></h2>
+    <h3>"Estoy Más Soloh Que Ayer Pero Menos Que Mañana" - PXNDX (2006)</h3>
+    <table class="tablero">
+        <tr valign="top">
+            <td class="celda-oscura" width="48%">
+                <h4>Video Oficial</h4>
+                <iframe src="https://www.youtube.com/embed/DQwR_mazGxw" title="PXNDX" allowfullscreen></iframe>
+            </td>
+            <td class="deco" width="4%"></td>
+            <td class="celda-clara" width="48%">
+                <h4>Letra</h4>
+                <blockquote>
+                    Todo lo que yo me dedico a hacer<br>
+                    Es solo una simple distracción<br>
+                    Del hecho seguro, que sufriendo yo acabaré<br>
+                    Y eventualmente moriré<br>
+                    <b>Sufro de una enfermedad mental y sentimental</b><br>
+                    <b>Soy un ególatra convencional, oh</b><br>
+                    <b>Yo sé que al final me rechazará</b><br>
+                    Dicen que el "no" ya lo tengo, pero es lo que siempre yo he tenido<br>
+                    El "sí" es mucho más difícil de conseguir que poder hacerla reir<br>
+                    <b>Sufro de una enfermedad mental y sentimental</b><br>
+                    <b>Soy un ególatra convencional, oh</b><br>
+                    <b>Yo sé que al final me rechazará</b><br>
+                    Me dijeron también que ella se lo pierde<br>
+                    Pero no logro entender<br>
+                    ¿Cómo es que alguien podría perder algo si ni siquiera logró ganarlo?<br>
+                    <b>Sufro de una enfermedad mental y sentimental</b><br>
+                    <b>Soy caballero demencial, oh</b><br>
+                    <b>Yo sé que al final me rechazará</b>
+                </blockquote>
+            </td>
+        </tr>
+        <tr>
+            <td class="deco"></td>
+            <td class="celda-oscura"></td>
+            <td class="deco"></td>
+        </tr>
+    </table>
+    <hr>
+ 
+    <!-- ==================== VIDEOJUEGO FAVORITO ==================== -->
+    <h2 id="juego"><a href="#indice">Videojuego Favorito</a></h2>
+    <h3>God of War</h3>
+    <table class="tablero">
+        <tr valign="top">
+            <td class="deco" width="4%"></td>
+            <td class="celda-clara" width="44%" align="center">
+                <img src="https://m.media-amazon.com/images/M/MV5BNjJiNTFhY2QtNzZkYi00MDNiLWEzNGEtNWE1NzBkOWIxNmY5XkEyXkFqcGc@._V1_.jpg"
+                    alt="Portada de God of War" width="100%" style="max-width:380px;">
+            </td>
+            <td class="deco" width="4%"></td>
+            <td class="celda-oscura" width="44%">
+                <iframe src="https://www.youtube.com/embed/-1FPjGJ3zbw" title="God of War Trailer" allowfullscreen></iframe>
+            </td>
+            <td class="deco" width="4%"></td>
+        </tr>
+        <tr>
+            <td class="celda-oscura"></td>
+            <td class="deco"></td>
+            <td class="celda-clara"></td>
+            <td class="deco"></td>
+            <td class="celda-oscura"></td>
+        </tr>
+    </table>
+    <hr>
+ 
+    <!-- ==================== MISIÓN Y VISIÓN ==================== -->
+    <h2 id="mision-vision"><a href="#indice">Misión y Visión Personal</a></h2>
+    <table class="tablero">
+        <tr valign="top">
+            <td class="celda-oscura" width="48%" align="center">
+                <h3>Misión</h3>
+                <img src="https://image.pollinations.ai/prompt/a%20young%20bolivian%20student%20coding%20on%20a%20laptop%20with%20mountains%20in%20the%20background%2C%20digital%20art%2C%20warm%20colors%2C%20inspirational?width=300&height=180&nologo=true"
+                    alt="Misión" width="100%" style="max-width:300px;"><br><br>
+                Completar con éxito toda la carrera en un plazo de 1 año y medio, cumpliendo los objetivos académicos de cada semestre, para después aplicar lo aprendido de manera satisfactoria en proyectos profesionales.
+            </td>
+            <td class="deco" width="4%"></td>
+            <td class="celda-clara" width="48%" align="center">
+                <h3>Visión</h3>
+                <img src="https://image.pollinations.ai/prompt/futuristic%20technology%20city%20in%20Latin%20America%20with%20innovation%20and%20connectivity%2C%20digital%20art%2C%20blue%20tones%2C%20hopeful?width=300&height=180&nologo=true"
+                    alt="Visión" width="100%" style="max-width:300px;"><br><br>
+                Convertirme en un programador más experimentado en un plazo de 2 años, fortaleciendo mis habilidades técnicas y de resolución de problemas para ser un referente capaz de enfrentar cualquier desafío laboral.
+            </td>
+        </tr>
+        <tr>
+            <td class="deco"></td>
+            <td class="celda-oscura"></td>
+            <td class="deco"></td>
+        </tr>
+    </table>
+    <hr>
+ 
+    <!-- ==================== TAREAS ==================== -->
+    <h2 id="tareas"><a href="#indice">Tareas</a></h2>
+    <table class="tablero">
+        <tr valign="top">
+            <td class="celda-oscura" width="30%">
+                <h3>1. Sistema de Almacenes</h3>
+                <p>Sistema desarrollado en equipo para INTI S.A.</p>
+                <ul>
+                    <li>Java</li>
+                    <li>MySQL</li>
+                </ul>
+                <a href="https://github.com/NewDanner/SI-Sistema-de-informacion-para-la-administracion-de-almacenes-11-25" target="_blank">Ver en GitHub</a>
+            </td>
+            <td class="deco" width="5%"></td>
+            <td class="celda-clara" width="30%">
+                <h3>2. Gestión de Laboratorios</h3>
+                <p>Sistema para administrar el uso de laboratorios para USB.</p>
+                <ul>
+                    <li>Java</li>
+                </ul>
+                <a href="https://github.com/NewDanner/Proyecto-Gestion-Labs" target="_blank">Ver en GitHub</a>
+            </td>
+            <td class="deco" width="5%"></td>
+            <td class="celda-oscura" width="30%">
+                <h3>3. Proyecto ATM</h3>
+                <p>Sistema de Cajero automático desarrollado en equipo.</p>
+                <ul>
+                    <li>PHP, JavaScript</li>
+                    <li>Xampp</li>
+                </ul>
+                <a href="https://github.com/NewDanner/Proyecto-ATM" target="_blank">Ver en GitHub</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="deco"></td>
+            <td class="celda-clara"></td>
+            <td class="deco"></td>
+            <td class="celda-oscura"></td>
+            <td class="deco"></td>
+        </tr>
+    </table>
+    <hr>
+ 
+    <!-- ==================== LOGROS DESTACADOS ==================== -->
+    <h2 id="logros"><a href="#indice">Logros Destacados</a></h2>
+    <table class="tablero">
+        <tr valign="top">
+            <td class="deco" width="5%"></td>
+            <td class="celda-clara" width="27%">
+                <h3>1. Ciberseguridad con Python (2026)</h3>
+                <p>Curso corto de Ciberseguridad.</p>
+                <ul>
+                    <li>Python</li>
+                    <li>Algoritmos</li>
+                </ul>
+            </td>
+            <td class="deco" width="5%"></td>
+            <td class="celda-oscura" width="27%">
+                <h3>2. Cableado Estructurado (2025)</h3>
+                <p>Curso de Cisco sobre Cableado Estructurado.</p>
+                <ul>
+                    <li>Cisco Packet Tracer</li>
+                    <li>20 horas</li>
+                </ul>
+            </td>
+            <td class="deco" width="5%"></td>
+            <td class="celda-clara" width="26%">
+                <h3>3. Campeón Rocket League (2021)</h3>
+                <p>Torneos en dúos y tríos.</p>
+                <ul>
+                    <li>3v3</li>
+                    <li>2v2</li>
+                </ul>
+            </td>
+            <td class="deco" width="5%"></td>
+        </tr>
+        <tr>
+            <td class="celda-oscura"></td>
+            <td class="deco"></td>
+            <td class="celda-clara"></td>
+            <td class="deco"></td>
+            <td class="celda-oscura"></td>
+            <td class="deco"></td>
+            <td class="celda-clara"></td>
+        </tr>
+    </table>
+    <hr>
+
+<!-- ==================== FOOTER / REDES SOCIALES ==================== -->
+    <footer style="background-color:#1a0030; padding:20px; text-align:center;">
+        <h2 id="redes"><a href="#indice">Encuéntrame en:</a></h2>
+        <table class="tablero" width="60%" align="center">
+            <tr>
+                <td class="deco" width="10%"></td>
+                <td class="celda-oscura" width="26%" align="center">
+                    <a href="https://trello.com/invite/b/698f0e8d45062152de2bfce0/ATTI640433e135533988fa2062e912212128A85CA6C6/atm-project" target="_blank">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2504/2504834.png" alt="Trello" width="40" height="40"><br>
+                        Danner
+                    </a>
+                </td>
+                <td class="deco" width="10%"></td>
+                <td class="celda-clara" width="26%" align="center">
+                    <a href="https://github.com/NewDanner" target="_blank">
+                        <img src="img/github.png" alt="GitHub" width="60" height="40"><br>
+                        NewDanner
+                    </a>
+                </td>
+                <td class="deco" width="10%"></td>
+                <td class="celda-oscura" width="26%" align="center">
+                    <a href="https://wa.me/+59178933585" target="_blank">
+                        <img src="img/Whatsapp.png" alt="Whatsapp" width="40" height="40"><br>
+                        NoobSaibot
+                    </a>
+                </td>
+                <td class="deco" width="10%"></td>
+            </tr>
+            <tr>
+                <td class="celda-clara"></td>
+                <td class="deco"></td>
+                <td class="celda-oscura"></td>
+                <td class="deco"></td>
+                <td class="celda-clara"></td>
+                <td class="deco"></td>
+                <td class="celda-oscura"></td>
+            </tr>
+        </table>
+        <p>&#169; 2026 Todos los derechos reservados</p>
+    </footer>
+
+</body>
+</html>
